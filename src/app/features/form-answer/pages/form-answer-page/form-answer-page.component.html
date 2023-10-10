@@ -1,0 +1,14 @@
+<div *ngFor="let item of listAnswers">
+  <strong>{{ item.question }}</strong>
+  <ng-container *ngIf="item.type == 1">
+    <p>{{ item.answer ? item.answer : "There are no answers" }}</p>
+  </ng-container>
+
+  <ng-container *ngIf="item.type == 2">
+    <p *ngFor='let opt of item.options'>
+        <span *ngIf="opt !== false"> {{opt}}</span>
+    </p>
+  </ng-container>
+</div>
+
+<button class="btn btn-primary"(click)="back()"> Back builder form</button>

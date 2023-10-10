@@ -1,0 +1,36 @@
+<div [formGroup]="formGroup" *ngIf="formGroup">
+  <div formArrayName="questions">
+    <div *ngFor="let questionForm of questions.controls; let i = index">
+      <div [formGroupName]="i" *ngIf="questionForm">
+        <!-- <div [formGroup]="questionForm" *ngIf="questionForm"> -->
+        <h3>
+          {{ questionForm.value.question}}
+          <span *ngIf="questionForm.value.isRequired">*</span>
+        </h3>
+
+        <ng-container *ngIf="questionForm.value.type == TYPE_QUESTION[0].value">
+          <textarea formControlName="answer" class="form-control"></textarea>
+        </ng-container>
+
+        <ng-container *ngIf="questionForm.value.type == TYPE_QUESTION[1].value">
+            <div formArrayName="options">
+            <div class="form-check" *ngFor="let option of listQuestion.options; let o = index">
+                <input
+                type="checkbox"
+                class="form-check-input"
+                [formControlName]="o"
+              />
+              <label class="form-check-label" for="isRequired">{{option}}</label
+              >
+            </div>
+        </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="text-end">
+    <button class="btn btn-primary" (click)="review()">
+      Review my answer >
+    </button>
+  </div>
+</div>

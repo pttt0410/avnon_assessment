@@ -1,0 +1,12 @@
+<app-list-questions [listQuestion]="listQuestion" (answer)="navigateAnswerPage($event)"></app-list-questions>
+
+<div class="mb-3">
+  <a (click)="openModal()"> + Add New Question </a>
+</div>
+
+
+
+<app-modal>
+  <app-add-question (addQuestion)="onSubmit($event)"></app-add-question>
+</app-modal>
+
